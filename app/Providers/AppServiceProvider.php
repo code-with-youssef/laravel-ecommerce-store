@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Providers;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Session;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot()
+    {
+        View::composer('*', function ($view) {
+            $view->with('currentUser', Auth::user());
+        });
+    }
+
+}
