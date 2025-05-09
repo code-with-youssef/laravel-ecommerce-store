@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 <div class="profile-container">
     <div class="profile-row justify-content-center">
@@ -192,4 +190,5 @@
     }
 </style>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('Layouts.master', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH F:\E-commerce app\E-commerce-app\resources\views/profile.blade.php ENDPATH**/ ?>
