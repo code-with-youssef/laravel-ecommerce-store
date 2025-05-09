@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->timestamp('created_at')->useCurrent();
+            $table->foreign(['category_id'], 'category_constraint')->references(['id'])->on('categories')->onUpdate('restrict')->onDelete('cascade');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->dropForeign('category_constraint');
         });
     }
 };

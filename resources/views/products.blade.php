@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    @if($products->isempty())
+    @if($products->isEmpty())
     <div class="full-height-section error-section">
         <div class="full-height-tablecell">
             <div class="container">
@@ -52,7 +52,7 @@
                     <div class="col-lg-8 offset-lg-2 text-center">
                         <div class="error-text">
                             <i class="fas fa-search" aria-hidden="true"></i>
-                            <h1>لم تم اضافة منتجات لهذا القسم بعد</h1>
+                            <h1>لم تتم اضافة منتجات لهذا القسم بعد</h1>
                             <a href="{{ route('home.index') }}" class="boxed-btn">العودة للصفحة الرئيسية</a>
                         </div>
                     </div>

@@ -1,8 +1,27 @@
 @extends('Layouts.master')
 
 @section('content')
-	
-	<!-- product section -->
+
+
+	@if($categories->isEmpty())
+	<div class="full-height-section error-section">
+		<div class="full-height-tablecell">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 offset-lg-2 text-center">
+						<div class="error-text">
+							<i class="fas fa-search" aria-hidden="true"></i>
+							<h1>لا توجد اقسام بعد</h1>
+							<a href="{{ route('home.index') }}" class="boxed-btn">العودة للصفحة الرئيسية</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	@else
+	<!-- category section -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
 			<div class="row">
@@ -13,6 +32,7 @@
 					</div>
 				</div>
 			</div>
+
 
 			<div class="row">
 				     {{-- Loop through categories --}}
@@ -35,7 +55,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- end product section -->
+	@endif
+	<!-- end category section -->
 
 @endsection
 
