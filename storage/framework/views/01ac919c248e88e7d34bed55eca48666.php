@@ -218,4 +218,4 @@
         }
     }
 </style>
-<?php echo $__env->make('layouts.admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH F:\E-commerce app\E-commerce-app\resources\views/admin/orders/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('Layouts.Admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH F:\E-commerce app\E-commerce-app\resources\views/admin/orders/index.blade.php ENDPATH**/ ?>
