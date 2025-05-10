@@ -1,4 +1,4 @@
-# JO-STORE Website
+# 🛒 JO-STORE – Laravel E-commerce Website
 
 A full-featured e-commerce web application built with Laravel. The project includes a custom admin dashboard, user-friendly shopping experience, and secure online payments.
 
