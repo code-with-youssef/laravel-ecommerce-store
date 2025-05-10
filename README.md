@@ -2,6 +2,12 @@
 
 A full-featured e-commerce web application built with Laravel. The project includes a custom admin dashboard, user-friendly shopping experience, and secure online payments.
 
+## ✨ Live Demo
+
+Check out the live version of the project here:  
+🔗 [https://jo-store-production.up.railway.app/](https://jo-store-production.up.railway.app/)
+
+
 ## 🔥 Features
 
 - 🛍️ **Product Management**: Categories, images, prices, stock quantity, and more.
