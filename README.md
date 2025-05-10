@@ -39,7 +39,7 @@ A full-featured e-commerce web application built with Laravel. The project inclu
    php artisan serve
 
 
-##📸 Screenshots
+## 📸 Screenshots
 
 Store:
 
