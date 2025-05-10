@@ -1,4 +1,4 @@
-# Laravel E-commerce Website
+# JO-STORE Website
 
 A full-featured e-commerce web application built with Laravel. The project includes a custom admin dashboard, user-friendly shopping experience, and secure online payments.
 
@@ -57,7 +57,7 @@ A full-featured e-commerce web application built with Laravel. The project inclu
 
 ![alt text](image-6.png)
 
-#### Admin panel:
+Admin panel:
 
 ![alt text](image-7.png)
 
