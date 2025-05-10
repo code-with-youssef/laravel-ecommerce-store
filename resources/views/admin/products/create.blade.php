@@ -39,7 +39,7 @@
                 </div>
 
 
-                <label for="name" class="form-label">صورة القسم<span class="text-danger">*</span></label>
+                <label for="name" class="form-label">صورة المنتج<span class="text-danger">*</span></label>
                 <div class="mb-2">
                     <img id="currentImage"style="max-width: 150px; max-height:150px;">
                     <input type="file" name="image" id="fileInput">
