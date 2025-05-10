@@ -15,16 +15,16 @@ A full-featured e-commerce web application built with Laravel. The project inclu
 
 ## 🛠️ Built With
 
-- **Backend**: Laravel 10+
-- **Frontend**: Blade, Bootstrap (or Tailwind)
-- **Database**: MySQL / PostgreSQL
+- **Backend**: Laravel 12+
+- **Frontend**: Blade, Bootstrap 
+- **Database**: MySQL 
 - **Authentication**: Laravel Breeze / Jetstream (optional)
-- **Payment Gateway**: [Insert payment provider used, e.g., Stripe, Paymob]
+- **Payment Gateway**: [Paymob]
 
 ## 🚀 Getting Started
 
 1. Clone the repository:
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/youssef-ashraf-othman/laravel-ecommerce-store.git
    cd your-repo-name
 
 
