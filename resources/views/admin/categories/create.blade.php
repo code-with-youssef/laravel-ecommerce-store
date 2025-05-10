@@ -3,7 +3,7 @@
 @section('content')
     <div class="card mb-4">
         <div class="card-header">
-            <h3>اضافة قسم القسم</h3>
+            <h3>اضافة قسم</h3>
         </div>
         <div class="card-body">
             <form action="{{ route('adminCategories.store') }}" method="POST" enctype="multipart/form-data">
