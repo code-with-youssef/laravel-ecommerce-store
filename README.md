@@ -41,7 +41,7 @@ A full-featured e-commerce web application built with Laravel. The project inclu
 
 ## 📸 Screenshots
 
-Store:
+### Store:
 
 ![alt text](image.png)
 
@@ -57,7 +57,7 @@ Store:
 
 ![alt text](image-6.png)
 
-Admin panel:
+#### Admin panel:
 
 ![alt text](image-7.png)
 
@@ -67,7 +67,7 @@ Admin panel:
 
 ![alt text](image-10.png)
 
-🙋‍♂️ Author
+## 🙋‍♂️ Author
 Youssef Ashraf
 
 www.linkedin.com/in/youssef-ashraf-7a8721249 | youssef.ashraf.othman120@gmail.com
