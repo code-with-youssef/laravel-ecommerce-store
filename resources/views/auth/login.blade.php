@@ -12,6 +12,10 @@
             <form action="{{ route('login') }}" method="POST" id="fruitkha-contact" onsubmit="return valid_datas(this);">
                 @csrf
 
+                @if(!empty($product))
+                    <input type="hidden" name="product_id" value="{{ $product->id }}"> {{--Sending the product id to the login page--}}
+                @endif
+
                 <div class="form-group mb-3">
                     <input type="email" class="form-control allow-select custom-input" placeholder="Email" name="email" id="email" value="{{ old('email') }}" required >
                     @error('email')

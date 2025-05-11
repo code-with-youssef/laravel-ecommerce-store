@@ -52,7 +52,7 @@
                                     <input type="hidden" name="user_id" value="{{ $currentUser->id }}">
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="number" name="quantity" id="quantity" max="{{ $product->quantity }}"
-                                        min="0" value="{{ $product->quantity > 0 ? 1 : 0 }}">
+                                        min="1" value="{{ $product->quantity > 0 ? 1 : 0 }}">
                                     <input type="hidden" name="product_quantity" id="quantity"
                                         value="{{ $product->quantity }}">
 
@@ -116,7 +116,7 @@
                                 {{-- Forwarding to the login page if the user is not logged in --}}
                             @else
                                 <p style="color: #051922; font-size: 20px;">لإتمام عملية الشراء يجب تسجيل الدخول</p>
-                                <a href="{{ route('login.index') }}" class="boxed-btn"
+                                <a href="{{ route('login.index',$product) }}" class="boxed-btn"
                                     style="color:black; font-size:15px; font-weight:bold">سجل الان</a>
                             @endif
                         </div>

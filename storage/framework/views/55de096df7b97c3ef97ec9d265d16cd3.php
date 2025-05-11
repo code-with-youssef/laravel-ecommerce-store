@@ -11,7 +11,9 @@
         <div class="contact-form">
             <form action="<?php echo e(route('login')); ?>" method="POST" id="fruitkha-contact" onsubmit="return valid_datas(this);">
                 <?php echo csrf_field(); ?>
-
+                <?php if(!empty($product)): ?>
+                    <input type="hidden" name="product_id" value="<?php echo e($product->id); ?>">
+                <?php endif; ?>
                 <div class="form-group mb-3">
                     <input type="email" class="form-control allow-select custom-input" placeholder="Email" name="email" id="email" value="<?php echo e(old('email')); ?>" required >
                     <?php $__errorArgs = ['email'];

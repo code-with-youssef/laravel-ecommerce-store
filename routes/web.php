@@ -57,7 +57,7 @@ Route::post('/register', [RegisterController::class, 'store'])->name("register")
 
 Route::get('/profile', [ProfileController::class, 'index'])->name("profile.index");//showing the profile page of the user.
 
-Route::get('/login', [LoginController::class, 'index'])->name("login.index");//Showing the login form.
+Route::get('/login/{product?}', [LoginController::class, 'index'])->name("login.index");//Showing the login form.
 
 Route::post('/login', [LoginController::class, 'login'])->name("login");//Logging the user in.
 

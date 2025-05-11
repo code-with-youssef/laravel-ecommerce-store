@@ -53,7 +53,7 @@
                                     <input type="hidden" name="user_id" value="<?php echo e($currentUser->id); ?>">
                                     <input type="hidden" name="product_id" value="<?php echo e($product->id); ?>">
                                     <input type="number" name="quantity" id="quantity" max="<?php echo e($product->quantity); ?>"
-                                        min="0" value="<?php echo e($product->quantity > 0 ? 1 : 0); ?>">
+                                        min="1" value="<?php echo e($product->quantity > 0 ? 1 : 0); ?>">
                                     <input type="hidden" name="product_quantity" id="quantity"
                                         value="<?php echo e($product->quantity); ?>">
 
@@ -117,7 +117,7 @@
                                 
                             <?php else: ?>
                                 <p style="color: #051922; font-size: 20px;">لإتمام عملية الشراء يجب تسجيل الدخول</p>
-                                <a href="<?php echo e(route('login.index')); ?>" class="boxed-btn"
+                                <a href="<?php echo e(route('login.index',$product)); ?>" class="boxed-btn"
                                     style="color:black; font-size:15px; font-weight:bold">سجل الان</a>
                             <?php endif; ?>
                         </div>

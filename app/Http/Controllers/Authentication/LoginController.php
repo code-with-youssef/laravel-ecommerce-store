@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers\Authentication;
 use App\Http\Controllers\Controller;
-
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function index(Product $product)
     {
-        return view("auth.login");
+        return view("auth.login",compact('product'));
     }
 
     public function login(Request $request)
     {
-    
+        $product_id = $request->product_id; 
+        $product = Product::where('id',$product_id)->first(); // Getting the product if the user logged in from the product page.
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -31,8 +33,16 @@ class LoginController extends Controller
                 return redirect()->route('dashboard');// Forwarding to the admin dashboard.
             }
 
+         
             else{
-                return redirect()->route('home.index'); // Forwarding to the home page.
+                if ($product === null) {
+                    return redirect()->route('home.index');
+                }
+
+                else{
+                    return redirect()->route('singleProduct.index',$product); // Returning the user back to the product page.
+                }
+                
             }
          
         }
