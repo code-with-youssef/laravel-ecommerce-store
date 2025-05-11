@@ -32,7 +32,7 @@ Check out the live version of the project here:
 1. Clone the repository:
    git clone https://github.com/youssef-ashraf-othman/laravel-ecommerce-store.git
    cd your-repo-name
-
+ 
 
 2. install dependencies:
    composer install
