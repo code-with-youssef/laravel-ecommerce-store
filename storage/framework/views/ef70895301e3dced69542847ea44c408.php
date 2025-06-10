@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" >
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8">
@@ -35,14 +35,35 @@
             background-color: #f8f9fc;
         }
 
+        /* Sidebar Overlay for mobile */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar-overlay.show {
+            display: block;
+            opacity: 1;
+        }
+
         #sidebar {
             width: var(--sidebar-width);
             height: 100vh;
             position: fixed;
             background: linear-gradient(180deg, var(--primary-color) 10%, #224abe 100%);
             color: white;
-            transition: all 0.3s;
+            transition: transform 0.3s ease;
             z-index: 1000;
+            top: 0;
+            left: 0;
         }
 
         #sidebar .sidebar-header {
@@ -76,6 +97,7 @@
             margin-left: var(--sidebar-width);
             width: calc(100% - var(--sidebar-width));
             min-height: 100vh;
+            transition: margin-left 0.3s ease, width 0.3s ease;
         }
 
         .navbar {
@@ -123,7 +145,6 @@
             vertical-align: middle;
         }
 
-        /* Add this to your existing CSS */
         /* RTL Search Form Styles */
         .search-form .form-control {
             padding: 0.5rem 1rem;
@@ -168,11 +189,60 @@
             border-top-left-radius: 0.35rem;
             border-bottom-left-radius: 0.35rem;
         }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            #sidebar {
+                transform: translateX(-100%);
+            }
+
+            #sidebar.show {
+                transform: translateX(0);
+            }
+
+            #content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            #sidebarToggle {
+                display: inline-block !important;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 769px) {
+            #sidebar {
+                transform: translateX(0);
+            }
+
+            #sidebarToggle {
+                display: none !important;
+            }
+
+            .sidebar-overlay {
+                display: none !important;
+            }
+        }
+
+        /* Prevent body scroll when sidebar is open on mobile */
+        body.sidebar-open {
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            body.sidebar-open {
+                overflow: hidden;
+            }
+        }
         
     </style>
 </head>
 
 <body>
+    <!-- Sidebar Overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <div class="d-flex">
         <!-- Sidebar -->
         <div id="sidebar">
@@ -213,20 +283,6 @@
                                 <?php echo e(Auth::user()->name); ?>
 
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm me-2"></i>
-                                        Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <form method="POST" action="#">
-                                        <?php echo csrf_field(); ?>
-                                        <button type="submit" class="dropdown-item"><i
-                                                class="fas fa-sign-out-alt fa-sm me-2"></i> Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -264,20 +320,59 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom Scripts -->
     <script>
-        // Toggle sidebar on mobile
-        document.getElementById('sidebarToggle').addEventListener('click', function() {
-            const sidebar = document.getElementById('sidebar');
-            const content = document.getElementById('content');
+        // Get elements
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const body = document.body;
 
-            if (sidebar.style.marginLeft === '-250px') {
-                sidebar.style.marginLeft = '0';
-                content.style.marginLeft = '250px';
-                content.style.width = 'calc(100% - 250px)';
-            } else {
-                sidebar.style.marginLeft = '-250px';
-                content.style.marginLeft = '0';
-                content.style.width = '100%';
+        // Toggle sidebar function
+        function toggleSidebar() {
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                sidebar.classList.toggle('show');
+                sidebarOverlay.classList.toggle('show');
+                body.classList.toggle('sidebar-open');
             }
+        }
+
+        // Close sidebar function
+        function closeSidebar() {
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                sidebar.classList.remove('show');
+                sidebarOverlay.classList.remove('show');
+                body.classList.remove('sidebar-open');
+            }
+        }
+
+        // Event listeners
+        sidebarToggle.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 768;
+            
+            if (!isMobile) {
+                // Desktop view - ensure sidebar is visible and overlay is hidden
+                sidebar.classList.remove('show');
+                sidebarOverlay.classList.remove('show');
+                body.classList.remove('sidebar-open');
+            }
+        });
+
+        // Close sidebar when clicking on sidebar links (mobile only)
+        const sidebarLinks = sidebar.querySelectorAll('a');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                const isMobile = window.innerWidth <= 768;
+                if (isMobile) {
+                    closeSidebar();
+                }
+            });
         });
 
         // Auto-close alerts after 5 seconds
@@ -288,9 +383,25 @@
                 bsAlert.close();
             });
         }, 5000);
+
+        // Prevent body scroll when sidebar is open on mobile
+        function preventBodyScroll() {
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile && sidebar.classList.contains('show')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
+        }
+
+        // Handle escape key to close sidebar
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSidebar();
+            }
+        });
     </script>
     <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 
-</html>
-<?php /**PATH F:\E-commerce app\E-commerce-app\resources\views/Layouts/Admin.blade.php ENDPATH**/ ?>
+</html><?php /**PATH F:\E-commerce app\E-commerce-app\resources\views/Layouts/Admin.blade.php ENDPATH**/ ?>
